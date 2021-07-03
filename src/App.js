@@ -1,9 +1,10 @@
 import './App.css'
+import AddForm from './Components/AddForm'
 
 const App = () => {
   return (
     <div className="App">
-      client
+      <AddForm />
     </div>
   )
 }
