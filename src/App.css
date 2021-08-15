@@ -1,0 +1,28 @@
+.App{
+    padding: 0 20px;
+}
+
+.table{
+    background-color: rgb(212, 212, 212);
+    margin: 20px 0;
+}
+
+.noUsers{
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    color: #333;
+    font-size: 18px;
+}
+
+.form{
+    margin: 20px 0;
+}
+
+.formBtnsBox{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
