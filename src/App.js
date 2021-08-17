@@ -1,26 +1,15 @@
-import { useState } from 'react'
 import './App.css'
 import Actions from './Components/Actions'
 import UsersList from './Components/UsersList'
+import { Box } from '@material-ui/core'
 
 const App = () => {
-  const [users, setUsers] = useState([])
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(false)
 
   return (
-    <div className="App">
-      <Actions 
-        setUsers={setUsers}  
-        setLoading={setLoading}
-        setError={setError}
-      />
-      <UsersList
-        users={users}
-        loading={loading}
-        error={error}
-      />
-    </div>
+    <Box className="App">
+      <Actions />
+      <UsersList />
+    </Box>
   )
 }
 

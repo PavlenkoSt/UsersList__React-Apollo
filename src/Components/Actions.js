@@ -1,41 +1,48 @@
 import React from 'react'
-import { CloudDownload, Add } from '@material-ui/icons'
-import { ALL_USERNAMES } from '../queries'
-import { useQuery } from '@apollo/client'
-import { Input, FormControl, Box, Button, FormGroup, InputLabel } from '@material-ui/core'
+import { useMutation } from '@apollo/client'
+import { Button } from '@material-ui/core'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
+import { CreateUser } from '../mutations'
 
-const Actions = ({ setUsers }) => {
-    const { data } = useQuery(ALL_USERNAMES)
+const Actions = () => {
 
-    const GetUsersHandler = () => {
-        setUsers(data?.getAllUsers)
-    }
+    const [createUser, { data, loading, error }] = useMutation(CreateUser)
 
     return (
-        <FormGroup className='form'>
-            <FormControl>
-                <InputLabel htmlFor="username">Имя пользователя</InputLabel>
-                <Input id="username" aria-describedby="my-helper-text" />
-            </FormControl>
-            <FormControl>
-                <InputLabel htmlFor="age">Возраст</InputLabel>
-                <Input id="age" aria-describedby="my-helper-text" />
-            </FormControl>
+        <Formik
+            initialValues={{ username: '', age: '' }}
+            validate={values => {
+                const errors = {};
+                if (!values.username) {
+                    errors.username = 'Поле не может быть пустым'
+                } 
+                if (!values.age) {
+                    errors.age = 'Поле не может быть пустым'
+                } 
+                return errors;
+            }}
+            onSubmit={(values, { setSubmitting, resetForm }) => {
+                createUser({
+                    variables: {
+                        username: values.username,
+                        age: values.age
+                    }
+                })
+                setSubmitting(false)
+                resetForm()
+            }}
+        >
+            {({ isSubmitting }) => (
+                <Form className='form'>
+                    <Field type="text" name="username" className='input' placeholder='Введите имя' />
+                    <ErrorMessage name="username" component="div" className='err' />
+                    <Field type="number" name="age" className='input' placeholder='Введите возраст' />
+                    <ErrorMessage name="age" component="div" className='err' />
+                    <Button type="submit" variant="outlined" disabled={isSubmitting} className='btn'>Отправить</Button>
+                </Form>
+            )}
+        </Formik>
             
-            <Box className='formBtnsBox'>
-                <Button 
-                    variant='outlined'
-                    color='primary'
-                    startIcon={<Add/>}
-                >Добавить</Button>
-                <Button 
-                    variant='outlined'
-                    color='primary'
-                    startIcon={<CloudDownload/>}
-                    onClick={GetUsersHandler}
-                >Получить</Button>
-            </Box>  
-        </FormGroup>
     )
 }
 
