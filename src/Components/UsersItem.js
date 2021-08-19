@@ -2,6 +2,7 @@ import React from 'react'
 import { TableRow, TableCell, Button } from '@material-ui/core'
 import { useMutation } from '@apollo/client'
 import { DELETE_USER } from '../mutations'
+import { Link } from 'react-router-dom'
 
 const UsersItem = ({ username, id, age }) => {
 
@@ -17,7 +18,11 @@ const UsersItem = ({ username, id, age }) => {
 
     return (
         <TableRow >
-            <TableCell>{id}</TableCell>        
+            <TableCell>
+                <Link to={`users/${id}`}>
+                    {id}
+                </Link>
+            </TableCell>        
             <TableCell>{username}</TableCell>        
             <TableCell>{age}</TableCell>    
             <TableCell>

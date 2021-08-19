@@ -1,14 +1,23 @@
 import './App.css'
-import Actions from './Components/Actions'
+import AddUserForm from './Components/AddUserForm'
 import UsersList from './Components/UsersList'
 import { Box } from '@material-ui/core'
+import { Switch, Route } from 'react-router-dom'
+import UserInfo from './Components/UserInfo'
 
 const App = () => {
 
   return (
     <Box className="App">
-      <Actions />
-      <UsersList />
+      <Switch>
+        <Route path='/users'>
+          <UserInfo/>
+        </Route>
+        <Route path='/'>
+          <AddUserForm />
+          <UsersList />
+        </Route>
+      </Switch>
     </Box>
   )
 }
