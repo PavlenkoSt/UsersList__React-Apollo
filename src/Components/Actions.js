@@ -2,11 +2,11 @@ import React from 'react'
 import { useMutation } from '@apollo/client'
 import { Button } from '@material-ui/core'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
-import { CreateUser } from '../mutations'
+import { CREATE_USER } from '../mutations'
 
 const Actions = () => {
 
-    const [createUser, { data, loading, error }] = useMutation(CreateUser)
+    const [createUser, { data, loading, error }] = useMutation(CREATE_USER)
 
     return (
         <Formik
