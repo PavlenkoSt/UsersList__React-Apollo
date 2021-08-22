@@ -10,3 +10,13 @@ export const ALL_USERS = gql`
         }
     }
 `
+
+export const ONE_USER = gql`
+    query getUser($id: ID!){
+        getUser(id: $id){
+            username,
+            id,
+            age
+        }
+    }
+`

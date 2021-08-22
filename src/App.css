@@ -51,3 +51,18 @@
     font-size: 12px;
     color: rgb(194, 0, 0);
 }
+
+.userInfo{
+    padding: 16px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.link{
+    display: flex;
+    justify-content: center;
+}
+
+.header{
+    text-align: center;
+}
